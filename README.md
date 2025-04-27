@@ -70,5 +70,3 @@ Zde je přehled splnění jednotlivých bodů zadání:
         * [`app/controllers/notes_controller.rb`](./app/controllers/notes_controller.rb) a `app/views/notes/`
         * [`app/controllers/tags_controller.rb`](./app/controllers/tags_controller.rb) a `app/views/tags/`
         * [`config/routes.rb`](./config/routes.rb) (řádky s `resources :groups`, `resources :notes`, `resources :tags`)
-
-*(Poznámka: Čísla řádků odpovídají poskytnutým souborům.)*
