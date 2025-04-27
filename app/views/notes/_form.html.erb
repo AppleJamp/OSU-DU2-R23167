@@ -1,0 +1,51 @@
+<%= form_with(model: note) do |form| %>
+  <% if note.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+        <% note.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :group_id, style: "display: block" %>
+    <%= form.collection_select :group_id, Group.all, :id, :name, prompt: "Vyberte skupinu" %>
+  </div>
+
+  <div>
+    <%# Výběr statusu pomocí enumu %>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.select :status, Note.statuses.keys.map { |s| [s.humanize, s] }, prompt: "Vyberte status" %>
+  </div>
+
+  <%# === Přidáno pro výběr Tagů (M:N) === %>
+  <div>
+    <%= form.label :tags, style: "display: block" %>
+    <%= form.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
+      <div class="form-check">
+        <%= b.check_box class: "form-check-input" %>
+        <%= b.label class: "form-check-label" %>
+      </div>
+    <% end %>
+  </div>
+  <%# === Konec sekce pro Tagy === %>
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
